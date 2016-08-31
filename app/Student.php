@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string stu_class 班級
  * @property string unit_name 科系
  * @property string dept_name 學院
- * @property double in_year 入學年度
+ * @property float in_year 入學年度
  * @property string stu_sex 性別
  *
  * @mixin \Eloquent
