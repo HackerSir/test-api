@@ -16,7 +16,7 @@
         {!! SemanticForm::open()->action(route('fcuapi.student.store')) !!}
     @endif
     <div class="ui stacked segment">
-        {!! SemanticForm::text('stu_id')->label('NID')->required() !!}
+        {!! SemanticForm::text('stu_id')->label('NID')->placeholder('開頭字母大寫')->required() !!}
         {!! SemanticForm::text('stu_name')->label('姓名')->required() !!}
         {!! SemanticForm::text('stu_class')->label('班級') !!}
         {!! SemanticForm::text('unit_name')->label('科系') !!}

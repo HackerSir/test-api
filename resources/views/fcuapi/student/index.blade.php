@@ -29,7 +29,7 @@
                     {{ $student->stu_class }}<br/>
                     （{{ $student->unit_name }} / {{ $student->dept_name }}）
                 </td>
-                <td>{{ $student->in_year }}</td>
+                <td>{{ number_format($student->in_year, 1) }}</td>
                 <td>{{ $student->stu_sex }}</td>
                 <td class="four wide">
                     <a href="{{ route('fcuapi.student.edit', $student) }}" class="ui icon brown inverted button">
