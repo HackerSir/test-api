@@ -25,6 +25,7 @@ class LaravelMenu
                 $fcuApiMenu = $menu->add('FCU API', 'javascript:void(0)')->active('fcuapi/*');
                 $fcuApiMenu->add('Docs', ['route' => 'fcuapi.index']);
                 $fcuApiMenu->add('Client', ['route' => 'fcuapi.client.index']);
+                $fcuApiMenu->add('學生', ['route' => 'fcuapi.student.index']);
             }
         });
         //右側
