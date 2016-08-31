@@ -22,7 +22,9 @@ class LaravelMenu
             /* @var \Lavary\Menu\Builder $menu */
             $menu->add('首頁', ['route' => 'index']);
             if (Entrust::can('fcuapi.manage')) {
-                $menu->add('FCU API', ['route' => 'fcuapi.index'])->active('fcuapi/*');
+                $fcuApiMenu = $menu->add('FCU API', 'javascript:void(0)')->active('fcuapi/*');
+                $fcuApiMenu->add('Docs', ['route' => 'fcuapi.index']);
+                $fcuApiMenu->add('Client', ['route' => 'fcuapi.client.index']);
             }
         });
         //右側

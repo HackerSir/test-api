@@ -16,6 +16,11 @@ Route::group(['prefix' => 'fcuapi', 'namespace' => 'FcuApi'], function () {
     Route::get('api/GetStuInfo', 'ApiController@getStuInfo')->name('fcuapi.getStuInfo');
     Route::group(['middleware' => 'permission:fcuapi.manage'], function () {
         Route::get('/', 'FcuApiController@index')->name('fcuapi.index');
+        Route::resource('client', 'ClientController', [
+            'except' => [
+                'show',
+            ],
+        ]);
     });
 });
 
