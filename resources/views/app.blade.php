@@ -44,7 +44,7 @@
 
 <div class="pusher">
     {{-- Content --}}
-    <div class="ui container" style="margin-top: 70px;">
+    <div class="ui container" style="margin-top: 70px; margin-bottom: 70px">
         @yield('content')
     </div>
 

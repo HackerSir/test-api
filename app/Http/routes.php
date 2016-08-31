@@ -11,6 +11,14 @@
 |
 */
 
+//FCU API
+Route::group(['prefix' => 'fcuapi', 'namespace' => 'FcuApi'], function () {
+    Route::get('api/GetStuInfo', 'ApiController@getStuInfo')->name('fcuapi.getStuInfo');
+    Route::group(['middleware' => 'permission:fcuapi.manage'], function () {
+        Route::get('/', 'FcuApiController@index')->name('fcuapi.index');
+    });
+});
+
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {
     //會員管理

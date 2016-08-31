@@ -21,6 +21,9 @@ class LaravelMenu
         Menu::make('left', function ($menu) {
             /* @var \Lavary\Menu\Builder $menu */
             $menu->add('首頁', ['route' => 'index']);
+            if (Entrust::can('fcuapi.manage')) {
+                $menu->add('FCU API', ['route' => 'fcuapi.index'])->active('fcuapi/*');
+            }
         });
         //右側
         Menu::make('right', function ($menu) {
