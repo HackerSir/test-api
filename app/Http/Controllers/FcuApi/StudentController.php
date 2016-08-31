@@ -45,7 +45,7 @@ class StudentController extends Controller
                 'regex:/[A-Z]\\d+/',
             ],
             'stu_name' => 'required',
-            'in_year'  => 'required|numeric',
+            'in_year'  => 'numeric',
         ]);
 
         Student::create($request->all());
@@ -80,7 +80,7 @@ class StudentController extends Controller
                 'regex:/[A-Z]\\d+/',
             ],
             'stu_name' => 'required',
-            'in_year'  => 'required|numeric',
+            'in_year'  => 'numeric',
         ]);
 
         $student->update($request->all());
@@ -96,6 +96,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return redirect()->route('fcuapi.student.index')->with('global', '學生已刪除');
     }
 }
