@@ -70,10 +70,12 @@
             Content-Type: application/json; charset=utf-8<br/>
             <div class="ui two column grid">
                 <div class="column">
-                    <h3>成功</h3>
+                    <h3>成功找到該NID的資料</h3>
                     <pre><code>{
   "UserInfo": [
     {
+      "status": "1",
+      "message": "逢甲本學期在校生",
       "stu_id": "D0512345",
       "stu_name": "小黑帽",
       "stu_class": "資訊工程學系一年級甲班",
@@ -86,6 +88,16 @@
 }
 </code></pre>
                     <div class="ui divided selection list">
+                        <div class="item">
+                            <div class="ui red horizontal label">status</div>
+                            是否為逢甲本學期在校生，資料為1、0<br/>
+                            1=>逢甲大學本學期在校生<br/>
+                            0=>非逢甲大學本學期在校生
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">message</div>
+                            回傳訊息，查看詳細的狀態
+                        </div>
                         <div class="item">
                             <div class="ui red horizontal label">stu_id</div>
                             NID
@@ -117,9 +129,31 @@
                     </div>
                 </div>
                 <div class="column">
-                    <h3>失敗</h3>
+                    <h3>找不到該NID的資料</h3>
                     <pre><code>{
-  "UserInfo": []
+  "UserInfo": [
+    {
+      "status": "0",
+      "message": "非逢甲本學期在校生",
+      "stu_id": "",
+      "stu_name": "",
+      "stu_class": "",
+      "unit_name": "",
+      "dept_name": "",
+      "in_year": 0,
+      "stu_sex": ""
+    }
+  ]
+}</code></pre>
+                    <h3>id參數為空</h3>
+                    <pre><code>{
+  "Message": "發生錯誤。"
+}</code></pre>
+                    <h3>缺少id參數</h3>
+                    <pre><code>{
+  "UserInfo": [
+    ""
+  ]
 }</code></pre>
                 </div>
             </div>
