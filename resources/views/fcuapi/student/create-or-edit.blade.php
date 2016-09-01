@@ -24,7 +24,7 @@
         {!! SemanticForm::text('in_year')->label('入學年度') !!}
         {!! SemanticForm::select('stu_sex')->label('性別')->options([null=>'-','M'=>'M','F'=>'F']) !!}
         <div style="text-align: center">
-            <a href="{{ route('fcuapi.client.index') }}" class="ui blue inverted icon button">
+            <a href="{{ route('fcuapi.student.index') }}" class="ui blue inverted icon button">
                 <i class="icon arrow left"></i> 返回列表
             </a>
             {!! SemanticForm::submit('<i class="checkmark icon"></i> 確認')->addClass('ui icon submit red inverted button') !!}
