@@ -113,7 +113,19 @@ class ApiController extends Controller
             return view('fcuapi.oauth.error', ['message' => '應用程式網址錯誤']);
         }
 
+        $student = Student::find($request->get('nid'));
+        $userCode = str_random(32);
+        $student->update([
+            'user_code' => $userCode,
+        ]);
+        $data = [
+            'status'    => '',
+            'message'   => '成功',
+            'user_code' => $userCode,
+        ];
+        $redirectUrl = $clientUrl . '?' . http_build_query($data);
+
         //重新導向
-        return redirect($clientUrl);
+        return redirect($redirectUrl);
     }
 }

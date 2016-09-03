@@ -163,7 +163,7 @@
 
             <div class="ui blue ribbon label">請求</div>
             <br/>
-            網址：{{ route('fcuapi.oauth') }}?<span class="key">client_id</span>=<span
+            網址：{{ route('fcuapi.auth') }}?<span class="key">client_id</span>=<span
                 class="value">xxxxx</span>&<span class="key">client_url</span>=<span class="value">http://checkin.hackersir.org/oauth/login</span>
             <div class="ui divided selection list">
                 <div class="item">
@@ -174,6 +174,29 @@
                     <div class="ui red horizontal label">client_url</div>
                     字串，登入後的重導向網址，須與Client對應
                     <div class="ui horizontal label">測試用，不驗證與Client的對應</div>
+                </div>
+            </div>
+
+            <div class="ui blue ribbon label">回應</div>
+            <br/>
+            自動跳轉至client_url
+            <pre><code>{
+  "status": ""
+  "message": "成功"
+  "user_code": "904e9cffb97844768aa36e37b9584c36"
+}</code></pre>
+            <div class="ui divided selection list">
+                <div class="item">
+                    <div class="ui red horizontal label">status</div>
+                    數字，狀態，成功時為空字串，失敗時為錯誤代碼
+                </div>
+                <div class="item">
+                    <div class="ui red horizontal label">message</div>
+                    字串，訊息，失敗或成功的原因或訊息
+                </div>
+                <div class="item">
+                    <div class="ui red horizontal label">user_code</div>
+                    字串，使用者的一次性序號
                 </div>
             </div>
         </div>
