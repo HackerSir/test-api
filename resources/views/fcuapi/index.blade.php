@@ -158,5 +158,24 @@
                 </div>
             </div>
         </div>
+        <div class="ui segment">
+            <h2>OAuth</h2>
+
+            <div class="ui blue ribbon label">請求</div>
+            <br/>
+            網址：{{ route('fcuapi.oauth') }}?<span class="key">client_id</span>=<span
+                class="value">xxxxx</span>&<span class="key">client_url</span>=<span class="value">http://checkin.hackersir.org/oauth/login</span>
+            <div class="ui divided selection list">
+                <div class="item">
+                    <div class="ui red horizontal label">client_id</div>
+                    數字，用於驗證請求端
+                </div>
+                <div class="item">
+                    <div class="ui red horizontal label">client_url</div>
+                    字串，登入後的重導向網址，須與Client對應
+                    <div class="ui horizontal label">測試用，不驗證與Client的對應</div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

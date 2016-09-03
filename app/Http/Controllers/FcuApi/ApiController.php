@@ -73,4 +73,11 @@ class ApiController extends Controller
 
         return response()->json($json, 200, [], static::$jsonOptions);
     }
+
+    public function showOAuthForm()
+    {
+        //TODO: 檢查ClientID
+        //TODO: 檢查ClientURL
+        //TODO: OAuth登入頁面
+    }
 }
