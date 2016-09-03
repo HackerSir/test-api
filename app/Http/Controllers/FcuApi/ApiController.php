@@ -74,10 +74,46 @@ class ApiController extends Controller
         return response()->json($json, 200, [], static::$jsonOptions);
     }
 
-    public function showOAuthForm()
+    public function auth()
     {
-        //TODO: 檢查ClientID
-        //TODO: 檢查ClientURL
-        //TODO: OAuth登入頁面
+        //ClientID
+        $clientId = Request::get('client_id');
+        //ClientURL
+        $clientUrl = Request::get('client_url');
+        //暫存資料
+        session([
+            'client_id'  => $clientId,
+            'client_url' => $clientUrl,
+        ]);
+
+        //導向OAuth登入頁面
+        return redirect()->route('fcuapi.login.form');
+    }
+
+    public function showLoginForm()
+    {
+        //檢查ClientID
+        $clientId = session('client_id');
+        if (!Client::where('client_id', $clientId)->count()) {
+            return view('fcuapi.oauth.error', ['message' => '應用程式代碼錯誤']);
+        }
+
+        return view('fcuapi.oauth.login');
+    }
+
+    public function login(\Illuminate\Http\Request $request)
+    {
+        $this->validate($request, [
+            'nid'      => 'required|exists:students,stu_id',
+            'password' => 'required|exists:students,password',
+        ]);
+        //檢查ClientURL
+        $clientUrl = session('client_url');
+        if (!filter_var($clientUrl, FILTER_VALIDATE_URL)) {
+            return view('fcuapi.oauth.error', ['message' => '應用程式網址錯誤']);
+        }
+
+        //重新導向
+        return redirect($clientUrl);
     }
 }

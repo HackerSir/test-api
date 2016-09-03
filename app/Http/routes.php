@@ -13,7 +13,12 @@
 
 //FCU API
 Route::group(['namespace' => 'FcuApi'], function () {
-    Route::get('fcuOAuth/Auth.aspx', 'ApiController@showOAuthForm')->name('fcuapi.oauth');
+    Route::group(['prefix' => 'fcuOAuth'], function () {
+        Route::any('Auth.aspx', 'ApiController@auth')->name('fcuapi.auth');
+        Route::any('Login.aspx', 'ApiController@showLoginForm')->name('fcuapi.login.form');
+        Route::post('login', 'ApiController@login')->name('fcuapi.login');
+    });
+
     Route::group(['prefix' => 'fcuapi'], function () {
         Route::get('api/GetStuInfo', 'ApiController@getStuInfo')->name('fcuapi.getStuInfo');
         Route::group(['middleware' => 'permission:fcuapi.manage'], function () {
