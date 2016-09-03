@@ -13,6 +13,7 @@
         <thead>
         <tr style="text-align: center">
             <th class="single line">NID</th>
+            <th class="single line">測試密碼</th>
             <th class="single line">姓名</th>
             <th class="single line">班級</th>
             <th class="single line">入學年度</th>
@@ -24,6 +25,7 @@
         @foreach($students as $student)
             <tr>
                 <td>{{ $student->stu_id }}</td>
+                <td>{{ $student->password }}</td>
                 <td>{{ $student->stu_name }}</td>
                 <td>
                     {{ $student->stu_class }}<br/>

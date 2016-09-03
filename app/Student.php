@@ -29,5 +29,11 @@ class Student extends Model
         'dept_name',
         'in_year',
         'stu_sex',
+        'password',
+        'user_code',
+    ];
+    protected $hidden = [
+        'password',
+        'user_code',
     ];
 }
