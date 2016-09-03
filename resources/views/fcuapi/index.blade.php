@@ -200,5 +200,71 @@
                 </div>
             </div>
         </div>
+        <div class="ui segment">
+            <h2>GetLoginUser - 透過UserCode取得登入狀態</h2>
+
+            <div class="ui blue ribbon label">請求</div>
+            <br/>
+            網址：{{ route('fcuapi.getLoginUser') }}?<span class="key">client_id</span>=<span
+                class="value">xxxxx</span>&<span class="key">user_code</span>=<span class="value">xxxxxxxxxx</span>
+            <div class="ui divided selection list">
+                <div class="item">
+                    <div class="ui red horizontal label">client_id</div>
+                    數字，用於驗證請求端
+                </div>
+                <div class="item">
+                    <div class="ui red horizontal label">user_code</div>
+                    字串，欲核對的UserCode
+                </div>
+            </div>
+
+            <div class="ui blue ribbon label">回應</div>
+            <br/>
+            Status Code: 200<br/>
+            Content-Type: application/json; charset=utf-8<br/>
+            <div class="ui two column grid">
+                <div class="column">
+                    <h3>有效登入，且在時限內</h3>
+                    <pre><code>{
+  "UserInfo": [
+    {
+      "status": "1",
+      "message": "成功",
+      "stu_id": "D0512345"
+    }
+  ]
+}
+</code></pre>
+                    <div class="ui divided selection list">
+                        <div class="item">
+                            <div class="ui red horizontal label">status</div>
+                            狀態，資料為1、0<br/>
+                            1=>成功<br/>
+                            0=>非有效的登入
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">message</div>
+                            回傳訊息，查看詳細的狀態
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">stu_id</div>
+                            NID
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h3>非有效登入</h3>
+                    <pre><code>{
+  "UserInfo": [
+    {
+      "status": "0",
+      "message": "非有效的登入",
+      "stu_id": ""
+    }
+  ]
+}</code></pre>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

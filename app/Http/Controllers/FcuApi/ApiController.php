@@ -128,4 +128,47 @@ class ApiController extends Controller
         //重新導向
         return redirect($redirectUrl);
     }
+
+    public function getLoginUser()
+    {
+        $failedJson = [
+            'UserInfo' => [
+                [
+                    'status'  => '0',
+                    'message' => '非有效的登入',
+                    'stu_id'  => '',
+                ],
+            ],
+        ];
+        //檢查Client
+        $clientId = Request::get('client_id');
+        if (!Client::where('client_id', $clientId)->count()) {
+            //FIXME: 無效Client ID，還不知道會回傳什麼
+            return response()->json($failedJson, 200, [], static::$jsonOptions);
+        }
+        //找出學生
+        $userCode = Request::get('user_code');
+        //無userCode
+        if (!$userCode) {
+            return response()->json($failedJson, 200, [], static::$jsonOptions);
+        }
+        //找出學生實體
+        $student = Student::where('user_code', $userCode)->first();
+        //學生不存在
+        if (!$student) {
+            return response()->json($failedJson, 200, [], static::$jsonOptions);
+        }
+
+        $json = [
+            'UserInfo' => [
+                [
+                    'status'  => '1',
+                    'message' => '成功',
+                    'stu_id'  => $student->stu_id,
+                ],
+            ],
+        ];
+
+        return response()->json($json, 200, [], static::$jsonOptions);
+    }
 }
