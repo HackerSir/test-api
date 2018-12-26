@@ -171,4 +171,47 @@ class ApiController extends Controller
 
         return response()->json($json, 200, [], static::$jsonOptions);
     }
+
+    public function getUserInfo()
+    {
+        $failedJson = [
+            'UserInfo' => [],
+        ];
+        //檢查Client
+        $clientId = Request::get('client_id');
+        if (!Client::where('client_id', $clientId)->count()) {
+            //FIXME: 無效Client ID，還不知道會回傳什麼
+            return response()->json($failedJson, 200, [], static::$jsonOptions);
+        }
+        //找出學生
+        $userCode = Request::get('user_code');
+        //無userCode
+        if (!$userCode) {
+            return response()->json($failedJson, 200, [], static::$jsonOptions);
+        }
+        //找出學生實體
+        $student = Student::where('user_code', $userCode)->first();
+        //學生不存在
+        if (!$student) {
+            return response()->json($failedJson, 200, [], static::$jsonOptions);
+        }
+
+        //TODO: 更新對應資料欄位
+        $json = [
+            'UserInfo' => [
+                [
+                    'id'        => $student->stu_id,
+                    'name'      => $student->stu_name,
+                    'type'      => '學生',
+                    'classname' => $student->stu_class,
+                    'unit_id'   => 'CE99',
+                    'unit_name' => $student->unit_name,
+                    'dept_id'   => 'CI',
+                    'dept_name' => $student->dept_name,
+                ],
+            ],
+        ];
+
+        return response()->json($json, 200, [], static::$jsonOptions);
+    }
 }

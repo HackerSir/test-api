@@ -266,5 +266,102 @@
                 </div>
             </div>
         </div>
+        <div class="ui segment">
+            <h2>GetUserInfo - 透過UserCode取得登入者資料</h2>
+
+            <div class="ui blue ribbon label">請求</div>
+            <br/>
+            網址：{{ route('fcuapi.getUserInfo') }}?<span class="key">client_id</span>=<span
+                class="value">xxxxx</span>&<span class="key">user_code</span>=<span class="value">xxxxxxxxxx</span>
+            <div class="ui divided selection list">
+                <div class="item">
+                    <div class="ui red horizontal label">client_id</div>
+                    數字，用於驗證請求端
+                </div>
+                <div class="item">
+                    <div class="ui red horizontal label">user_code</div>
+                    字串，欲核對的UserCode
+                </div>
+            </div>
+
+            <div class="ui blue ribbon label">回應</div>
+            <br/>
+            Status Code: 200<br/>
+            Content-Type: application/json; charset=utf-8<br/>
+            <div class="ui two column grid">
+                <div class="column">
+                    <h3>有效登入，且在時限內</h3>
+                    <pre><code>{
+  "UserInfo": [
+    {
+      "id": "Txxxxx",
+      "name": "吳XX",
+      "type": "教職員工",
+      "classname": "",
+      "unit_id": "CE01",
+      "unit_name": "資訊工程系",
+      "dept_id": "CI",
+      "dept_name": "資電學院"
+    }
+  ]
+}
+</code></pre><pre><code>{
+  "UserInfo": [
+    {
+      "id": "Dxxxxxxx",
+      "name": "程XX",
+      "type": "學生",
+      "classname": "外國語文學系一年級丙班",
+      "unit_id": "CH06",
+      "unit_name": "外國語文學系",
+      "dept_id": "CH",
+      "dept_name": "人社學院"
+    }
+  ]
+}
+</code></pre>
+                    <div class="ui divided selection list">
+                        <div class="item">
+                            <div class="ui red horizontal label">id</div>
+                            NID
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">name</div>
+                            姓名
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">type</div>
+                            類型：學生/教職員工
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">classname</div>
+                            類型：班級全稱（教職員工為空）
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">unit_id</div>
+                            類型：系所ID
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">unit_name</div>
+                            類型：系所名稱
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">dept_id</div>
+                            類型：學院ID
+                        </div>
+                        <div class="item">
+                            <div class="ui red horizontal label">dept_name</div>
+                            類型：學院名稱
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h3>非有效登入</h3>
+                    <pre><code>{
+  "UserInfo": []
+}</code></pre>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
